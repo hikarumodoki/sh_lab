@@ -169,6 +169,7 @@ void eval(char *cmdline)
     // 70 lines
     char *argv[MAXARGS];
     int bg, bi;
+    pid_t pid;
 
     bg = parseline(cmdline, argv);
     bi = builtin_cmd(argv);
@@ -179,6 +180,14 @@ void eval(char *cmdline)
     if (fork() == 0)
     {
         execvp(argv[0], argv);
+        pid = getpid();
+    }
+
+    if (bg) {
+      addjob(jobs, pid, BG, cmdline);
+      //struct job_t *getjobpid(struct job_t *jobs, pid_t pid) {
+      struct job_t job = (*getjobpid(jobs, pid));
+      printf("[%d] (%d) %s\n", job.jid, job.pid, job.cmdline);     
     }
 
     return;
