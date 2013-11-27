@@ -1,9 +1,8 @@
 /* 
  * tsh - A tiny shell program with job control
  * 
- * <Put your name and login ID here>
- * Jonathon McDonald jmcdonal
- * Greg Greg greg
+ * <Jonathon McDonald jmcdonal>
+ * <Greg Berrett berrett>
  */
 #include <stdio.h>
 #include <stdlib.h>
