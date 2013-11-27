@@ -167,6 +167,12 @@ int main(int argc, char **argv)
 void eval(char *cmdline) 
 {
     // 70 lines
+    char *argv[MAXARGS];
+    int bg, bi;
+
+    bg = parseline(cmdline, argv);
+    bi = builtin_cmd(argv);
+
     return;
 }
 
@@ -236,6 +242,9 @@ int parseline(const char *cmdline, char **argv)
 int builtin_cmd(char **argv) 
 {
     // 25 lines
+    if (strcmp(argv[0], "quit") == 0)
+        exit(0);
+
     return 0;     /* not a builtin command */
 }
 
