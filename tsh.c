@@ -173,6 +173,14 @@ void eval(char *cmdline)
     bg = parseline(cmdline, argv);
     bi = builtin_cmd(argv);
 
+    // Return if the command was builtin
+    if (bi) return;
+
+    if (fork() == 0)
+    {
+        execvp(argv[0], argv);
+    }
+
     return;
 }
 
